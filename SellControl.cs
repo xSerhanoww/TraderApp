@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static TraderBeta_02.PortfolioForm;
 
 namespace TraderBeta_02
 {
@@ -26,7 +27,7 @@ namespace TraderBeta_02
 
         private void confirm_btn_Click(object sender, EventArgs e)
         {
-            
+            SellStocks();
         }
     }
 }

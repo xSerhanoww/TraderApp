@@ -31,9 +31,11 @@ namespace TraderBeta_02
             {
                 foreach (var stock in ownedStocks)
                 {
+                    Guid newGuid = Guid.NewGuid();
+                 
                     var portfolio = new PortfolioData
                     {
-                        order_num = Guid.NewGuid().ToString(),
+                        order_num = newGuid.ToString(),
                         StockName = stock.stockName_lbl.Text,
                         StockOwner = stock.stockFN_lbl.Text,
                         Investment = InvestedAmount,
@@ -44,6 +46,7 @@ namespace TraderBeta_02
                         owner_id = LoggedUserId
 
                     };
+                    CurrentGuid.Add(newGuid.ToString());
                     db.Portfolios.Add(portfolio);
                     
                 }
@@ -54,7 +57,26 @@ namespace TraderBeta_02
         }
         public static void SellStocks()
         {
-           
+           using(var db = new StocksDbContext())
+           {
+                foreach (var item in db.Portfolios)
+                {
+                    foreach (var guid in CurrentGuid)
+                    {
+                        if (item.order_num == guid && item.StockName == tempStockBar.stockName_lbl.Text && item.Units == Convert.ToDouble(tempStockBar.units_lbl.Text))
+                        {
+                            db.Remove(item);
+                            break;
+                        }
+                    }
+                   
+                }
+            
+                 db.SaveChanges();
+
+
+
+           }
 
 
         }

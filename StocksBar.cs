@@ -22,6 +22,8 @@ namespace TraderBeta_02
     public partial class StocksBar : UserControl
     {
         public static List<StocksBar> ownedStocks = new List<StocksBar>();
+        public static List<StocksBar> stocksForSale = new List<StocksBar>();
+        public static List<string> CurrentGuid = new List<string>();
 
         public static StocksBar tempStockBar { get; set; }
 
@@ -99,9 +101,9 @@ namespace TraderBeta_02
             newSell.PL_lbl.Text = tempStockBar.profit_lbl.Text;
             newSell.BringToFront();
 
-            if (ownedStocks.Contains(tempStockBar) == false)
+            if (stocksForSale.Contains(tempStockBar) == false)
             {
-                ownedStocks.Add(tempStockBar);
+               stocksForSale.Add(tempStockBar);
             }
 
         }
