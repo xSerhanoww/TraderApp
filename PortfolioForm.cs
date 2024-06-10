@@ -11,16 +11,19 @@ using TraderBeta_02.Data;
 using static TraderBeta_02.StocksBar;
 using static TraderBeta_02.TransactionsControl;
 using static TraderBeta_02.Form1;
+using System.Drawing.Design;
 
 namespace TraderBeta_02
 {
     public partial class PortfolioForm : Form
     {
+        public static PortfolioForm Instance;
         public static double InvestedAmount { get; set; }
         public static double UnitsAmount { get; set; }
 
         public PortfolioForm()
         {
+            Instance = this;
             InitializeComponent();
             LoadPortfolioData();
         }
@@ -45,8 +48,7 @@ namespace TraderBeta_02
                         Type = stock.stockType_lbl.Text,
                         owner_id = LoggedUserId
 
-                    };
-                    CurrentGuid.Add(newGuid.ToString());
+                    };                  
                     db.Portfolios.Add(portfolio);
                     
                 }
@@ -61,20 +63,12 @@ namespace TraderBeta_02
            {
                 foreach (var item in db.Portfolios)
                 {
-                    foreach (var guid in CurrentGuid)
+                    if (item.order_num == tempStockBar.ordernum_lbl.Text)
                     {
-                        if (item.order_num == guid && item.StockName == tempStockBar.stockName_lbl.Text && item.Units == Convert.ToDouble(tempStockBar.units_lbl.Text))
-                        {
-                            db.Remove(item);
-                            break;
-                        }
+                        db.Portfolios.Remove(item);
                     }
-                   
                 }
-            
-                 db.SaveChanges();
-
-
+                db.SaveChanges();
 
            }
 
@@ -92,8 +86,10 @@ namespace TraderBeta_02
                     stocksBar.sell_btn.Visible = true;
                     stocksBar.investmentAmount_lbl.Visible = true;
                     stocksBar.profit_lbl.Visible = true;
-                    stocksBar.units_lbl.Visible = true;                  
+                    stocksBar.units_lbl.Visible = true;
+                    stocksBar.ordernum_lbl.Text = stock.order_num;
                     panel3.Controls.Add(stocksBar);
+                   
                 }
 
             }

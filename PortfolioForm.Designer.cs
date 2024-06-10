@@ -250,11 +250,11 @@
         private RadioButton radioButton1;
         private RadioButton radioButton5;
         private Label label1;
-        private Panel panel3;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label6;
         private Label label7;
+        protected internal Panel panel3;
     }
 }

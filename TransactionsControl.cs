@@ -17,16 +17,18 @@ namespace TraderBeta_02
     public partial class TransactionsControl : UserControl
     {
 
-
+        public static TransactionsControl? Instance;
         public TransactionsControl()
         {
             InitializeComponent();
+            Instance = this;
         }
 
         private void exit_Click(object sender, EventArgs e)
         {
 
             this.Dispose();
+            Instance = null;
             Form1.Instance.panel3.Enabled = true;
             Form1.Instance.panel1.Enabled = true;
 
@@ -37,7 +39,7 @@ namespace TraderBeta_02
 
         private void confirm_btn_Click(object sender, EventArgs e)
         {
-           
+
             if (double.TryParse(amountInvested_txtbox.Text, out double number))
             {
                 if (AccountForm.Balance >= Convert.ToDouble(amountInvested_txtbox.Text))
@@ -56,7 +58,7 @@ namespace TraderBeta_02
                 MessageBox.Show("Please enter a valid number.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             }
-            
+
 
         }
 
@@ -66,12 +68,24 @@ namespace TraderBeta_02
             {
                 unitsAmt_lbl.Text = "";
             }
-            else if(double.TryParse(amountInvested_txtbox.Text, out double number))
+            else if (double.TryParse(amountInvested_txtbox.Text, out double number))
             {
-                double result = Convert.ToDouble(amountInvested_txtbox.Text) / Convert.ToDouble(tempStockBar.stockPrice_lbl.Text);
+                double result = Convert.ToDouble(amountInvested_txtbox.Text) / Form1.CurrentPrice;
                 unitsAmt_lbl.Text = result.ToString(format: "f2");
             }
         }
-    
+
+        public void price_lbl_TextChanged(object sender, EventArgs e)
+        {
+           if (amountInvested_txtbox.Text == "")
+           {
+                unitsAmt_lbl.Text = "";
+           }
+           else if (double.TryParse(amountInvested_txtbox.Text, out double number))
+           {
+                double result = Convert.ToDouble(amountInvested_txtbox.Text) / Form1.CurrentPrice;
+                unitsAmt_lbl.Text = result.ToString(format: "f2");
+           }
+        }
     }
 }

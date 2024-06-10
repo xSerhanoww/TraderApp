@@ -1,5 +1,8 @@
 using System.ComponentModel;
 using System.Security.Cryptography.X509Certificates;
+using TraderBeta_02.Data;
+using static TraderBeta_02.StocksBar;
+
 
 namespace TraderBeta_02
 {
@@ -13,9 +16,14 @@ namespace TraderBeta_02
 
         public static int LoggedUserId { get; set; }
 
+        public static double CurrentPrice { get; set; }
+
+        private Random random;
+
         public Form1()
         {
             InitializeComponent();
+            InitializeTimer();
             Instance = this;
             CallWatchlistForm();
 
@@ -133,12 +141,46 @@ namespace TraderBeta_02
             {
                 isLoggedIn = false;
                 LoginControl.CheckLogin();
-                CallWatchlistForm();    
+                CallWatchlistForm();
             }
             else if (dialogResult == DialogResult.No)
             {
                 isLoggedIn = true;
             }
         }
+        private void InitializeTimer()
+        {
+            timer1.Interval = 15000;
+            timer1.Tick += timer1_Tick;
+            timer1.Start();
+
+
+            random = new Random();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            using (var db = new StocksDbContext()) 
+            {
+                
+                double percentageChange = (double)(random.Next(1, 3)) / 100;
+                double direction = random.Next(0, 2) == 0 ? -1 : 1;
+                db.Stocks.ToList().ForEach(stock => stock.Price += stock.Price * percentageChange * direction);
+                db.Portfolios.ToList().ForEach(portfolio => portfolio.Price += portfolio.Price * percentageChange * direction);
+                if (TransactionsControl.Instance != null)
+                {
+                    CurrentPrice = Convert.ToDouble(TransactionsControl.Instance.price_lbl.Text);
+                    CurrentPrice += CurrentPrice * percentageChange * direction;
+                    TransactionsControl.Instance.price_lbl.Text = CurrentPrice.ToString("f2");
+                    TransactionsControl.Instance.price_lbl_TextChanged(sender, e);
+                }
+               
+                db.SaveChanges();
+                CallWatchlistForm();
+                    
+            }
+            
+        }
+      
     }
 }

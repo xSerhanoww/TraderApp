@@ -12,6 +12,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using TraderBeta_02.Data;
 using static TraderBeta_02.Data.StocksDbContext;
@@ -22,9 +23,7 @@ namespace TraderBeta_02
     public partial class StocksBar : UserControl
     {
         public static List<StocksBar> ownedStocks = new List<StocksBar>();
-        public static List<StocksBar> stocksForSale = new List<StocksBar>();
-        public static List<string> CurrentGuid = new List<string>();
-
+        //public static List<StocksBar> stocksForSale = new List<StocksBar>();
         public static StocksBar tempStockBar { get; set; }
 
         public StocksBar(Image image, string stockName, string stockFullName, double? investmentAmt, double? profit, double? units, double price, string type)
@@ -42,6 +41,7 @@ namespace TraderBeta_02
             this.stockPrice_lbl.Text = price.ToString();
             this.stockType_lbl.Text = type;
             this.Dock = DockStyle.Top;
+            
         }
         public static string SetImage(string StockNamePNG)
         {
@@ -50,6 +50,7 @@ namespace TraderBeta_02
 
 
         }
+       
 
         private void buy_btn_Click(object sender, EventArgs e)
         {
@@ -68,7 +69,7 @@ namespace TraderBeta_02
                 newTransaction.fullname_lbl.Text = tempStockBar.stockFN_lbl.Text;
                 newTransaction.pictureBox1.Image = tempStockBar.pictureBox1.Image;
                 newTransaction.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-                newTransaction.price_lbl.Text = tempStockBar.stockPrice_lbl.Text;
+                newTransaction.price_lbl.Text = tempStockBar.stockPrice_lbl.Text;                
                 newTransaction.BringToFront();
 
 
@@ -101,10 +102,12 @@ namespace TraderBeta_02
             newSell.PL_lbl.Text = tempStockBar.profit_lbl.Text;
             newSell.BringToFront();
 
-            if (stocksForSale.Contains(tempStockBar) == false)
-            {
-               stocksForSale.Add(tempStockBar);
-            }
+           
+
+            //if (stocksForSale.Contains(tempStockBar) == false)
+            //{
+            //   stocksForSale.Add(tempStockBar);
+            //}
 
         }
     }

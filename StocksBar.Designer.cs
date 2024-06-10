@@ -38,6 +38,7 @@
             units_lbl = new Label();
             profit_lbl = new Label();
             sell_btn = new Button();
+            ordernum_lbl = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -169,6 +170,18 @@
             sell_btn.Visible = false;
             sell_btn.Click += sell_btn_Click;
             // 
+            // ordernum_lbl
+            // 
+            ordernum_lbl.AutoSize = true;
+            ordernum_lbl.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            ordernum_lbl.Location = new Point(0, 0);
+            ordernum_lbl.Name = "ordernum_lbl";
+            ordernum_lbl.Size = new Size(193, 19);
+            ordernum_lbl.TabIndex = 1;
+            ordernum_lbl.Text = "order_num_visible_false";
+            ordernum_lbl.TextAlign = ContentAlignment.MiddleRight;
+            ordernum_lbl.Visible = false;
+            // 
             // StocksBar
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -178,6 +191,7 @@
             Controls.Add(profit_lbl);
             Controls.Add(units_lbl);
             Controls.Add(stockPrice_lbl);
+            Controls.Add(ordernum_lbl);
             Controls.Add(investmentAmount_lbl);
             Controls.Add(stockType_lbl);
             Controls.Add(stockName_lbl);
@@ -200,5 +214,6 @@
         protected internal Label units_lbl;
         protected internal Label profit_lbl;
         protected internal Button sell_btn;
+        protected internal Label ordernum_lbl;
     }
 }

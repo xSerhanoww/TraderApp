@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static TraderBeta_02.PortfolioForm;
+using static TraderBeta_02.StocksBar;
 
 namespace TraderBeta_02
 {
@@ -28,6 +29,8 @@ namespace TraderBeta_02
         private void confirm_btn_Click(object sender, EventArgs e)
         {
             SellStocks();
+            Instance.panel3.Controls.Remove(tempStockBar);
+            exit_Click(sender, e);
         }
     }
 }

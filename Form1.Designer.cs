@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
             login_btn = new Label();
@@ -41,6 +42,7 @@
             welcome_lbl = new Label();
             exit = new Label();
             panel3 = new Panel();
+            timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -209,6 +211,10 @@
             panel3.Size = new Size(952, 575);
             panel3.TabIndex = 2;
             // 
+            // timer1
+            // 
+            timer1.Tick += timer1_Tick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -242,5 +248,6 @@
         protected internal Label welcome_lbl;
         protected internal Label login_btn;
         protected internal Label logout_btn;
+        private System.Windows.Forms.Timer timer1;
     }
 }
