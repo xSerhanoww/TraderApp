@@ -23,5 +23,10 @@ namespace TraderBeta_02
             Form1.Instance.panel3.Enabled = true;
             Form1.Instance.panel1.Enabled = true;
         }
+
+        private void confirm_btn_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

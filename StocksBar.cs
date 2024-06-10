@@ -34,10 +34,10 @@ namespace TraderBeta_02
             this.pictureBox1.Size = new System.Drawing.Size(60, 50);
             this.stockName_lbl.Text = stockName;
             this.stockFN_lbl.Text = stockFullName;
-            this.investmentAmount_lbl.Text = "$" + investmentAmt.ToString();
-            this.profit_lbl.Text = "$" + profit.ToString();
+            this.investmentAmount_lbl.Text = investmentAmt.ToString();
+            this.profit_lbl.Text = profit.ToString();
             this.units_lbl.Text = units.ToString();
-            this.stockPrice_lbl.Text = "$" + price.ToString();
+            this.stockPrice_lbl.Text = price.ToString();
             this.stockType_lbl.Text = type;
             this.Dock = DockStyle.Top;
         }

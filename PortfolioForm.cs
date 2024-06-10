@@ -27,7 +27,6 @@ namespace TraderBeta_02
         public static void AddSelectedStocksToPortfolio()
         {
             
-
             using (var db = new StocksDbContext())
             {
                 foreach (var stock in ownedStocks)
@@ -45,7 +44,6 @@ namespace TraderBeta_02
                         owner_id = LoggedUserId
 
                     };
-     
                     db.Portfolios.Add(portfolio);
                     
                 }
@@ -56,18 +54,7 @@ namespace TraderBeta_02
         }
         public static void SellStocks()
         {
-            using(var db = new StocksDbContext())
-            {
-                foreach(var stock in db.Portfolios)
-                {
-                    
-
-                }
-
-
-
-            }
-
+           
 
 
         }

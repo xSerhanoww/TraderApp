@@ -127,6 +127,7 @@
             confirm_btn.TabIndex = 15;
             confirm_btn.Text = "CONFIRM";
             confirm_btn.UseVisualStyleBackColor = false;
+            confirm_btn.Click += confirm_btn_Click;
             // 
             // exit
             // 
