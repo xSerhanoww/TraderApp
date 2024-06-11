@@ -15,13 +15,12 @@ namespace TraderBeta_02
 {
     public partial class WatchlistForm : Form
     {
-        
-        
+
         public WatchlistForm()
         {
 
-          InitializeComponent();
-          LoadStockData();
+            InitializeComponent();
+            LoadStockData();
 
         }
         private void LoadStockData()
@@ -31,13 +30,32 @@ namespace TraderBeta_02
                 var stocks = db.Stocks.ToList();
                 foreach (var stock in stocks)
                 {
-                    StocksBar stocksBar = new StocksBar(System.Drawing.Image.FromFile(SetImage(stock.StockName)),stock.StockName,stock.StockOwner,stock.Investment,stock.Profit,stock.Units,stock.Price,stock.Type);
+                    StocksBar stocksBar = new StocksBar(System.Drawing.Image.FromFile(SetImage(stock.StockName)), stock.StockName, stock.StockOwner, stock.Investment, stock.Profit, stock.Units, stock.Price, stock.Type);
                     //stocksBar.stockID = stock.stock_id;
                     panel3.Controls.Add(stocksBar);
                 }
 
             }
         }
-       
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

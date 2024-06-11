@@ -69,6 +69,7 @@
             radioButton4.TabStop = true;
             radioButton4.Text = "Currencies";
             radioButton4.UseVisualStyleBackColor = true;
+            radioButton4.CheckedChanged += radioButton4_CheckedChanged;
             // 
             // radioButton3
             // 
@@ -81,6 +82,7 @@
             radioButton3.TabStop = true;
             radioButton3.Text = "Crypto";
             radioButton3.UseVisualStyleBackColor = true;
+            radioButton3.CheckedChanged += radioButton3_CheckedChanged;
             // 
             // radioButton2
             // 
@@ -93,6 +95,7 @@
             radioButton2.TabStop = true;
             radioButton2.Text = "Stocks";
             radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
             // 
             // radioButton1
             // 
@@ -117,6 +120,7 @@
             radioButton5.TabStop = true;
             radioButton5.Text = "Commodities";
             radioButton5.UseVisualStyleBackColor = true;
+            radioButton5.CheckedChanged += radioButton5_CheckedChanged;
             // 
             // label1
             // 
